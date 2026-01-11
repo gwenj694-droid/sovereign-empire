@@ -20,16 +20,16 @@
             background: rgba(0,0,0,0.8); flex-shrink: 0; 
         }
         
-        h1 { letter-spacing: 10px; font-weight: 300; text-transform: uppercase; margin: 0; font-size: 1.3rem; text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+        h1 { letter-spacing: 10px; font-weight: 300; text-transform: uppercase; margin: 0; font-size: 1.3rem; text-shadow: 0 0 15px rgba(212, 175, 55, 0.6); }
         
         .main-container { display: flex; flex-direction: column; height: calc(100vh - 60px); }
         
         /* VERA CHAT INTERFACE */
-        .agent-window { flex: 2.5; width: 100%; background: transparent; padding: 10px; box-sizing: border-box; }
+        .agent-window { flex: 2.5; width: 100%; background: transparent; padding: 15px; box-sizing: border-box; }
         
         /* CONTROL BAR: DNA BLOCKS */
         .control-bar { 
-            background: rgba(10,10,10,0.95); padding: 15px; border-top: 1px solid #D4AF37; 
+            background: rgba(10,10,10,0.98); padding: 15px; border-top: 1px solid #D4AF37; 
             display: flex; flex-direction: column; align-items: center; gap: 8px; 
         }
         
@@ -68,27 +68,30 @@
 
 <div class="main-container">
     <div class="agent-window">
-        <!-- VERA BRAIN (NEW ID INTEGRATED) -->
-        <iframe src="https://chatkit.openai.com/v1/chat/wf_6963bddaa4a08190860392f849b6dea00ec02a76d0ea5646" style="width:100%; height:100%; border-radius:15px; border:1px solid rgba(212, 175, 55, 0.3);"></iframe>
+        <!-- VERA BRAIN (NEW 2026 EMBED URL) -->
+        <iframe 
+            src="https://www.chatgpt.com/agents/embed/wf_6963bddaa4a08190860392f849b6dea00ec02a76d0ea5646" 
+            style="width:100%; height:100%; border-radius:15px; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.4);"
+            allow="microphone; clipboard-write; autoplay;">
+        </iframe>
     </div>
 
     <div class="control-bar">
         <div class="input-row">
             <input type="text" id="brand" placeholder="Brand Name">
-            <input type="email" id="email" placeholder="Delivery Email">
+            <input type="email" id="email" placeholder="Recipient Email">
             <select id="assetType">
                 <option value="Sales Page">Build: Sales Page</option>
                 <option value="Full Ebook">Build: Full E-Book</option>
                 <option value="Novel">Build: Professional Novel</option>
                 <option value="Email Sequence">Build: Email Sequence</option>
-                <option value="Affirmation Set">Build: Affirmations</option>
                 <option value="Recipe Book">Build: Recipe Book</option>
             </select>
         </div>
         <div class="input-row">
-            <input type="text" id="dna" placeholder="Colors & Textures (e.g. Black Silk, Gold Particles)">
-            <input type="text" id="font" placeholder="Font Style (e.g. Editorial Serif, Modern Bold)">
-            <textarea id="vision" placeholder="Describe the specific purpose and story for this asset..."></textarea>
+            <input type="text" id="dna" placeholder="Colors & Textures">
+            <input type="text" id="font" placeholder="Font (Serif/Modern)">
+            <textarea id="vision" placeholder="Paste specific product details here..."></textarea>
         </div>
         <div class="btn-group">
             <button class="btn" id="lockBtn" onclick="lockEmpireDNA()">Secure & Arm System</button>
@@ -109,9 +112,9 @@
         
         if(!e.includes('@')) return alert("Valid Email Required");
 
-        btn.innerText = "ARMING ENGINE...";
+        btn.innerText = "LOCKING DNA...";
         
-        // YOUR SOVEREIGN SCRIPT URL
+        // YOUR LIVE SOVEREIGN SCRIPT URL
         const scriptURL = "https://script.google.com/macros/s/AKfycbyFit_-dILUOr3tp0on8JA3pa2olk21YOOkW5hlJGbrtI77qXWIsgyfAGVNq27MSr5Y/exec";
         
         const dnaPacket = {
@@ -128,7 +131,7 @@
         });
 
         setTimeout(() => {
-            btn.innerText = "EMPIRE ARMED 🥂";
+            btn.innerText = "SYSTEM ARMED 🥂";
             btn.style.background = "#fff";
             btn.style.color = "#000";
             document.getElementById('vframe').src += '';
@@ -139,9 +142,9 @@
         document.getElementById('vframe').src += '';
     }
 
-    // MESMERIZING PARTICLE ENGINE (SPARKLES)
+    // SPARKLE PARTICLE ENGINE
     const canvas=document.getElementById('canvas'),ctx=canvas.getContext('2d');canvas.width=window.innerWidth;canvas.height=window.innerHeight;let p=[];
-    class Part{constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.s=Math.random()*2;this.vx=Math.random()*0.3-0.15;this.vy=Math.random()*0.3-0.15}update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>canvas.width)this.vx*=-1;if(this.y<0||this.y>canvas.height)this.vy*=-1}draw(){ctx.fillStyle='rgba(212, 175, 55, 0.6)';ctx.beginPath();ctx.arc(this.x,this.y,this.s,0,Math.PI*2);ctx.fill()}}
+    class Part{constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.s=Math.random()*2;this.vx=Math.random()*0.4-0.2;this.vy=Math.random()*0.4-0.2}update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>canvas.width)this.vx*=-1;if(this.y<0||this.y>canvas.height)this.vy*=-1}draw(){ctx.fillStyle='rgba(212, 175, 55, 0.6)';ctx.beginPath();ctx.arc(this.x,this.y,this.s,0,Math.PI*2);ctx.fill()}}
     function init(){for(let i=0;i<100;i++)p.push(new Part())}function anim(){ctx.clearRect(0,0,canvas.width,canvas.height);p.forEach(x=>{x.update();x.draw()});requestAnimationFrame(anim)}init();anim();
 </script>
 
