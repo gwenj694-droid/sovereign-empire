@@ -6,40 +6,57 @@
     <title>Sovereign Empire | Command Center</title>
     <style>
         /* SOVEREIGN LUXE AESTHETIC */
-        body, html { margin: 0; padding: 0; background: #000; color: #D4AF37; font-family: 'Garamond', serif; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+        body, html { 
+            margin: 0; padding: 0; background: #000; color: #D4AF37; 
+            font-family: 'Garamond', serif; height: 100vh; overflow: hidden; 
+            display: flex; flex-direction: column; 
+        }
         
         /* SPARKLE CANVAS */
         #canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
         
-        header { text-align: center; padding: 15px 0; border-bottom: 1px solid #D4AF37; background: rgba(0,0,0,0.8); flex-shrink: 0; }
+        header { 
+            text-align: center; padding: 15px 0; border-bottom: 1px solid #D4AF37; 
+            background: rgba(0,0,0,0.8); flex-shrink: 0; 
+        }
+        
         h1 { letter-spacing: 10px; font-weight: 300; text-transform: uppercase; margin: 0; font-size: 1.3rem; text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
         
         .main-container { display: flex; flex-direction: column; height: calc(100vh - 60px); }
         
-        /* THE VERA INTERFACE */
+        /* VERA CHAT INTERFACE */
         .agent-window { flex: 2.5; width: 100%; background: transparent; padding: 10px; box-sizing: border-box; }
         
-        /* THE SOVEREIGN CONTROL BAR */
-        .control-bar { background: rgba(10,10,10,0.95); padding: 15px; border-top: 1px solid #D4AF37; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        /* CONTROL BAR: DNA BLOCKS */
+        .control-bar { 
+            background: rgba(10,10,10,0.95); padding: 15px; border-top: 1px solid #D4AF37; 
+            display: flex; flex-direction: column; align-items: center; gap: 8px; 
+        }
+        
         .input-row { display: flex; gap: 10px; width: 100%; justify-content: center; flex-wrap: wrap; }
         
         input, select, textarea { 
             background: #000; border: 1px solid #D4AF37; color: #fff; padding: 10px; border-radius: 5px; 
             font-family: 'Garamond', serif; font-size: 0.85rem; width: 30%; 
         }
+        
         textarea { width: 62%; height: 45px; resize: none; }
         input:focus, textarea:focus { outline: none; border-color: #fff; box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
         
         .btn-group { display: flex; gap: 12px; margin-top: 5px; }
+        
         .btn { 
             background: #D4AF37; color: #000; border: none; padding: 12px 35px; cursor: pointer; 
             font-weight: bold; text-transform: uppercase; letter-spacing: 3px; border-radius: 5px; transition: 0.5s; 
         }
+        
         .btn:hover { background: #fff; box-shadow: 0 0 25px #D4AF37; transform: scale(1.02); }
+        
         .btn-refresh { background: #000; color: #D4AF37; border: 1px solid #D4AF37; }
 
-        /* THE SOVEREIGN ARCHIVE */
+        /* SOVEREIGN VAULT */
         .vault-window { flex: 1.5; width: 100%; background: #fff; border-top: 2px solid #D4AF37; }
+        
         iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
@@ -51,55 +68,56 @@
 
 <div class="main-container">
     <div class="agent-window">
-        <!-- VERA BRAIN (Chat Interface) -->
-        <iframe src="https://chatkit.openai.com/v1/chat/wf_6959510d11648190b1a0340d43b8e822036e" style="width:100%; height:100%; border-radius:15px; border:1px solid rgba(212, 175, 55, 0.3);"></iframe>
+        <!-- VERA BRAIN (NEW ID INTEGRATED) -->
+        <iframe src="https://chatkit.openai.com/v1/chat/wf_6963bddaa4a08190860392f849b6dea00ec02a76d0ea5646" style="width:100%; height:100%; border-radius:15px; border:1px solid rgba(212, 175, 55, 0.3);"></iframe>
     </div>
 
     <div class="control-bar">
         <div class="input-row">
-            <input type="text" id="brand" placeholder="Empire Brand Name">
+            <input type="text" id="brand" placeholder="Brand Name">
             <input type="email" id="email" placeholder="Delivery Email">
             <select id="assetType">
                 <option value="Sales Page">Build: Sales Page</option>
                 <option value="Full Ebook">Build: Full E-Book</option>
-                <option value="Story Book">Build: Children's Story</option>
-                <option value="Email Sequence">Build: 3-Part Emails</option>
-                <option value="CEO Workbook">Build: Strategy Workbook</option>
+                <option value="Novel">Build: Professional Novel</option>
+                <option value="Email Sequence">Build: Email Sequence</option>
+                <option value="Affirmation Set">Build: Affirmations</option>
+                <option value="Recipe Book">Build: Recipe Book</option>
             </select>
         </div>
         <div class="input-row">
-            <input type="text" id="dna" placeholder="Colors & Textures (Silk, Gold, etc.)">
-            <input type="text" id="font" placeholder="Font Style (Editorial, Modern, Bold)">
-            <textarea id="vision" placeholder="Describe the soul of this product build..."></textarea>
+            <input type="text" id="dna" placeholder="Colors & Textures (e.g. Black Silk, Gold Particles)">
+            <input type="text" id="font" placeholder="Font Style (e.g. Editorial Serif, Modern Bold)">
+            <textarea id="vision" placeholder="Describe the specific purpose and story for this asset..."></textarea>
         </div>
         <div class="btn-group">
-            <button class="btn" id="lockBtn" onclick="lockSovereignDNA()">Secure & Arm System</button>
-            <button class="btn btn-refresh" onclick="document.getElementById('vault-frame').src += ''">Refresh Vault</button>
+            <button class="btn" id="lockBtn" onclick="lockEmpireDNA()">Secure & Arm System</button>
+            <button class="btn btn-refresh" onclick="refreshVault()">Refresh Vault</button>
         </div>
     </div>
 
     <div class="vault-window">
-        <iframe id="vault-frame" src="https://docs.google.com/document/d/1z6C9T_WUjWzA8R8tZapIhwK6XmAhKj1fFOJFGWq212E/preview"></iframe>
+        <iframe id="vframe" src="https://docs.google.com/document/d/1z6C9T_WUjWzA8R8tZapIhwK6XmAhKj1fFOJFGWq212E/preview"></iframe>
     </div>
 </div>
 
 <script>
-    function lockSovereignDNA() {
-        const email = document.getElementById('email').value;
-        const brand = document.getElementById('brand').value;
+    function lockEmpireDNA() {
+        const e = document.getElementById('email').value;
+        const b = document.getElementById('brand').value;
         const btn = document.getElementById('lockBtn');
         
-        if(!email.includes('@')) return alert("Valid Email Required");
+        if(!e.includes('@')) return alert("Valid Email Required");
 
         btn.innerText = "ARMING ENGINE...";
         
-        // YOUR LIVE SOVEREIGN SCRIPT URL
+        // YOUR SOVEREIGN SCRIPT URL
         const scriptURL = "https://script.google.com/macros/s/AKfycbyFit_-dILUOr3tp0on8JA3pa2olk21YOOkW5hlJGbrtI77qXWIsgyfAGVNq27MSr5Y/exec";
         
         const dnaPacket = {
             type: "lock_session",
-            brand: brand,
-            email: email,
+            brand: b,
+            email: e,
             dna: "Type: " + document.getElementById('assetType').value + " | Aesthetic: " + document.getElementById('dna').value + " | Font: " + document.getElementById('font').value + " | Vision: " + document.getElementById('vision').value
         };
 
@@ -113,13 +131,17 @@
             btn.innerText = "EMPIRE ARMED 🥂";
             btn.style.background = "#fff";
             btn.style.color = "#000";
-            document.getElementById('vault-frame').src += '';
+            document.getElementById('vframe').src += '';
         }, 3000);
     }
 
-    // MESMERIZING PARTICLE ENGINE
+    function refreshVault() {
+        document.getElementById('vframe').src += '';
+    }
+
+    // MESMERIZING PARTICLE ENGINE (SPARKLES)
     const canvas=document.getElementById('canvas'),ctx=canvas.getContext('2d');canvas.width=window.innerWidth;canvas.height=window.innerHeight;let p=[];
-    class Part{constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.s=Math.random()*2;this.vx=Math.random()*0.4-0.2;this.vy=Math.random()*0.4-0.2}update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>canvas.width)this.vx*=-1;if(this.y<0||this.y>canvas.height)this.vy*=-1}draw(){ctx.fillStyle='rgba(212, 175, 55, 0.5)';ctx.beginPath();ctx.arc(this.x,this.y,this.s,0,Math.PI*2);ctx.fill()}}
+    class Part{constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.s=Math.random()*2;this.vx=Math.random()*0.3-0.15;this.vy=Math.random()*0.3-0.15}update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>canvas.width)this.vx*=-1;if(this.y<0||this.y>canvas.height)this.vy*=-1}draw(){ctx.fillStyle='rgba(212, 175, 55, 0.6)';ctx.beginPath();ctx.arc(this.x,this.y,this.s,0,Math.PI*2);ctx.fill()}}
     function init(){for(let i=0;i<100;i++)p.push(new Part())}function anim(){ctx.clearRect(0,0,canvas.width,canvas.height);p.forEach(x=>{x.update();x.draw()});requestAnimationFrame(anim)}init();anim();
 </script>
 
