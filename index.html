@@ -1,81 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sovereign Empire | Command Center</title>
     <style>
-        /* SOVEREIGN LUXE AESTHETIC */
-        body, html { 
-            margin: 0; padding: 0; background: #000; color: #D4AF37; 
-            font-family: 'Garamond', serif; height: 100vh; overflow: hidden; 
-            display: flex; flex-direction: column; 
-        }
-        
-        /* SPARKLE CANVAS */
+        body, html { margin: 0; padding: 0; background: #000; color: #D4AF37; font-family: 'Garamond', serif; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
         #canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-        
-        header { 
-            text-align: center; padding: 15px 0; border-bottom: 1px solid #D4AF37; 
-            background: rgba(0,0,0,0.8); flex-shrink: 0; 
-        }
-        
+        header { text-align: center; padding: 15px 0; border-bottom: 1px solid #D4AF37; background: rgba(0,0,0,0.8); flex-shrink: 0; }
         h1 { letter-spacing: 10px; font-weight: 300; text-transform: uppercase; margin: 0; font-size: 1.3rem; text-shadow: 0 0 15px rgba(212, 175, 55, 0.6); }
-        
         .main-container { display: flex; flex-direction: column; height: calc(100vh - 60px); }
         
-        /* VERA CHAT INTERFACE */
-        .agent-window { flex: 2.5; width: 100%; background: transparent; padding: 15px; box-sizing: border-box; }
+        /* THE VERA INTERFACE */
+        .agent-window { flex: 3; width: 100%; background: transparent; padding: 10px; box-sizing: border-box; }
         
-        /* CONTROL BAR: DNA BLOCKS */
-        .control-bar { 
-            background: rgba(10,10,10,0.98); padding: 15px; border-top: 1px solid #D4AF37; 
-            display: flex; flex-direction: column; align-items: center; gap: 8px; 
-        }
-        
+        /* THE SOVEREIGN CONTROL BAR */
+        .control-bar { background: rgba(10,10,10,0.98); padding: 15px; border-top: 1px solid #D4AF37; display: flex; flex-direction: column; align-items: center; gap: 8px; }
         .input-row { display: flex; gap: 10px; width: 100%; justify-content: center; flex-wrap: wrap; }
-        
-        input, select, textarea { 
-            background: #000; border: 1px solid #D4AF37; color: #fff; padding: 10px; border-radius: 5px; 
-            font-family: 'Garamond', serif; font-size: 0.85rem; width: 30%; 
-        }
-        
+        input, select, textarea { background: #000; border: 1px solid #D4AF37; color: #fff; padding: 10px; border-radius: 5px; font-family: 'Garamond', serif; font-size: 0.85rem; width: 30%; }
         textarea { width: 62%; height: 45px; resize: none; }
-        input:focus, textarea:focus { outline: none; border-color: #fff; box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
         
         .btn-group { display: flex; gap: 12px; margin-top: 5px; }
-        
-        .btn { 
-            background: #D4AF37; color: #000; border: none; padding: 12px 35px; cursor: pointer; 
-            font-weight: bold; text-transform: uppercase; letter-spacing: 3px; border-radius: 5px; transition: 0.5s; 
-        }
-        
-        .btn:hover { background: #fff; box-shadow: 0 0 25px #D4AF37; transform: scale(1.02); }
-        
+        .btn { background: #D4AF37; color: #000; border: none; padding: 12px 35px; cursor: pointer; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; border-radius: 5px; transition: 0.5s; }
+        .btn:hover { background: #fff; box-shadow: 0 0 25px #D4AF37; }
         .btn-refresh { background: #000; color: #D4AF37; border: 1px solid #D4AF37; }
 
-        /* SOVEREIGN VAULT */
+        /* THE SOVEREIGN VAULT */
         .vault-window { flex: 1.5; width: 100%; background: #fff; border-top: 2px solid #D4AF37; }
-        
         iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
-
 <canvas id="canvas"></canvas>
-
 <header><h1>SOVEREIGN EMPIRE</h1></header>
-
 <div class="main-container">
     <div class="agent-window">
-        <!-- VERA BRAIN (NEW 2026 EMBED URL) -->
+        <!-- VERA BRAIN (THE SOVEREIGN LINK) -->
         <iframe 
-            src="https://www.chatgpt.com/agents/embed/wf_6963bddaa4a08190860392f849b6dea00ec02a76d0ea5646" 
-            style="width:100%; height:100%; border-radius:15px; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.4);"
+            src="https://chatgpt.com/agents/wf_6963bddaa4a08190860392f849b6dea00ec02a76d0ea5646" 
+            style="width:100%; height:100%; border-radius:15px; border: 1px solid rgba(212, 175, 55, 0.4);"
             allow="microphone; clipboard-write; autoplay;">
         </iframe>
     </div>
-
     <div class="control-bar">
         <div class="input-row">
             <input type="text" id="brand" placeholder="Brand Name">
@@ -83,70 +48,47 @@
             <select id="assetType">
                 <option value="Sales Page">Build: Sales Page</option>
                 <option value="Full Ebook">Build: Full E-Book</option>
-                <option value="Novel">Build: Professional Novel</option>
-                <option value="Email Sequence">Build: Email Sequence</option>
-                <option value="Recipe Book">Build: Recipe Book</option>
+                <option value="Emails">Build: Email Sequence</option>
+                <option value="Affirmation Set">Build: Affirmations</option>
             </select>
         </div>
         <div class="input-row">
             <input type="text" id="dna" placeholder="Colors & Textures">
-            <input type="text" id="font" placeholder="Font (Serif/Modern)">
-            <textarea id="vision" placeholder="Paste specific product details here..."></textarea>
+            <input type="text" id="font" placeholder="Font Style">
+            <textarea id="vision" placeholder="Describe the soul of this product..."></textarea>
         </div>
         <div class="btn-group">
-            <button class="btn" id="lockBtn" onclick="lockEmpireDNA()">Secure & Arm System</button>
-            <button class="btn btn-refresh" onclick="refreshVault()">Refresh Vault</button>
+            <button class="btn" id="lockBtn" onclick="lockDNA()">Secure & Arm System</button>
+            <button class="btn btn-refresh" onclick="document.getElementById('vframe').src += ''">Refresh Vault</button>
         </div>
     </div>
-
     <div class="vault-window">
         <iframe id="vframe" src="https://docs.google.com/document/d/1z6C9T_WUjWzA8R8tZapIhwK6XmAhKj1fFOJFGWq212E/preview"></iframe>
     </div>
 </div>
 
 <script>
-    function lockEmpireDNA() {
+    function lockDNA() {
         const e = document.getElementById('email').value;
         const b = document.getElementById('brand').value;
         const btn = document.getElementById('lockBtn');
-        
         if(!e.includes('@')) return alert("Valid Email Required");
-
         btn.innerText = "LOCKING DNA...";
         
-        // YOUR LIVE SOVEREIGN SCRIPT URL
         const scriptURL = "https://script.google.com/macros/s/AKfycbyFit_-dILUOr3tp0on8JA3pa2olk21YOOkW5hlJGbrtI77qXWIsgyfAGVNq27MSr5Y/exec";
         
-        const dnaPacket = {
-            type: "lock_session",
-            brand: b,
-            email: e,
-            dna: "Type: " + document.getElementById('assetType').value + " | Aesthetic: " + document.getElementById('dna').value + " | Font: " + document.getElementById('font').value + " | Vision: " + document.getElementById('vision').value
-        };
-
-        fetch(scriptURL, {
-            method: "POST",
-            mode: "no-cors",
-            body: JSON.stringify(dnaPacket)
-        });
-
-        setTimeout(() => {
-            btn.innerText = "SYSTEM ARMED 🥂";
+        const dnaPacket = { type: "lock_session", brand: b, email: e, dna: "Type: " + document.getElementById('assetType').value + " | Aesthetic: " + document.getElementById('dna').value + " | Font: " + document.getElementById('font').value + " | Vision: " + document.getElementById('vision').value };
+        fetch(scriptURL, { method: "POST", mode: "no-cors", body: JSON.stringify(dnaPacket) });
+        
+        setTimeout(() => { 
+            btn.innerText = "SYSTEM ARMED 🥂"; 
             btn.style.background = "#fff";
-            btn.style.color = "#000";
-            document.getElementById('vframe').src += '';
+            document.getElementById('vframe').src += ''; 
         }, 3000);
     }
-
-    function refreshVault() {
-        document.getElementById('vframe').src += '';
-    }
-
-    // SPARKLE PARTICLE ENGINE
     const canvas=document.getElementById('canvas'),ctx=canvas.getContext('2d');canvas.width=window.innerWidth;canvas.height=window.innerHeight;let p=[];
-    class Part{constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.s=Math.random()*2;this.vx=Math.random()*0.4-0.2;this.vy=Math.random()*0.4-0.2}update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>canvas.width)this.vx*=-1;if(this.y<0||this.y>canvas.height)this.vy*=-1}draw(){ctx.fillStyle='rgba(212, 175, 55, 0.6)';ctx.beginPath();ctx.arc(this.x,this.y,this.s,0,Math.PI*2);ctx.fill()}}
+    class Part{constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.s=Math.random()*2;this.vx=Math.random()*0.3-0.15;this.vy=Math.random()*0.3-0.15}update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>canvas.width)this.vx*=-1;if(this.y<0||this.y>canvas.height)this.vy*=-1}draw(){ctx.fillStyle='rgba(212, 175, 55, 0.6)';ctx.beginPath();ctx.arc(this.x,this.y,this.s,0,Math.PI*2);ctx.fill()}}
     function init(){for(let i=0;i<100;i++)p.push(new Part())}function anim(){ctx.clearRect(0,0,canvas.width,canvas.height);p.forEach(x=>{x.update();x.draw()});requestAnimationFrame(anim)}init();anim();
 </script>
-
 </body>
 </html>
