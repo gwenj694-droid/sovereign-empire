@@ -1,149 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sovereign Empire | Command Center</title>
     <style>
-        /* SOVEREIGN LUXE AESTHETIC */
-        body, html { 
-            margin: 0; padding: 0; background: #000; color: #D4AF37; 
-            font-family: 'Garamond', serif; height: 100vh; overflow: hidden; 
-            display: flex; flex-direction: column; 
-        }
-        
+        body, html { margin: 0; padding: 0; background: #000; color: #D4AF37; font-family: 'Garamond', serif; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
         #canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-        
-        header { 
-            text-align: center; padding: 15px 0; border-bottom: 1px solid #D4AF37; 
-            background: rgba(0,0,0,0.8); flex-shrink: 0; 
-        }
-        
-        h1 { letter-spacing: 10px; font-weight: 300; text-transform: uppercase; margin: 0; font-size: 1.3rem; text-shadow: 0 0 15px rgba(212, 175, 55, 0.6); }
-        
+        header { text-align: center; padding: 15px 0; border-bottom: 1px solid #D4AF37; background: rgba(0,0,0,0.8); flex-shrink: 0; }
+        h1 { letter-spacing: 10px; font-weight: 300; text-transform: uppercase; margin: 0; font-size: 1.2rem; text-shadow: 0 0 15px rgba(212, 175, 55, 0.6); }
         .main-container { display: flex; flex-direction: column; height: calc(100vh - 60px); }
-        
-        /* THE SOVEREIGN FLAME (The Creation Core) */
         .flame-container { flex: 2.5; width: 100%; display: flex; align-items: center; justify-content: center; position: relative; }
-        .flame-orb { 
-            width: 180px; height: 180px; 
-            background: radial-gradient(circle, #fff 0%, #fdfc97 20%, #D4AF37 50%, transparent 70%); 
-            border-radius: 50%; 
-            box-shadow: 0 0 80px #D4AF37, 0 0 120px #8B6508, inset 0 0 30px #fff; 
-            animation: pulse 4s infinite alternate; 
-        }
-        @keyframes pulse { 0% { transform: scale(0.9); opacity: 0.7; filter: blur(2px); } 100% { transform: scale(1.1); opacity: 1; filter: blur(10px); } }
-
-        /* THE CONTROL CENTER */
-        .control-bar { 
-            background: rgba(10,10,10,0.98); padding: 15px; border-top: 1px solid #D4AF37; 
-            display: flex; flex-direction: column; align-items: center; gap: 8px; 
-        }
-        
+        .flame-orb { width: 180px; height: 180px; background: radial-gradient(circle, #fff 0%, #D4AF37 50%, transparent 70%); border-radius: 50%; box-shadow: 0 0 80px #D4AF37; animation: pulse 4s infinite alternate; }
+        @keyframes pulse { 0% { transform: scale(0.9); opacity: 0.7; } 100% { transform: scale(1.1); opacity: 1; } }
+        .control-bar { background: rgba(10,10,10,0.95); padding: 15px; border-top: 1px solid #D4AF37; display: flex; flex-direction: column; align-items: center; gap: 8px; }
         .input-row { display: flex; gap: 10px; width: 100%; justify-content: center; flex-wrap: wrap; }
-        
-        input, select, textarea { 
-            background: #000; border: 1px solid #D4AF37; color: #fff; padding: 10px; border-radius: 5px; 
-            font-family: 'Garamond', serif; font-size: 0.85rem; width: 31%; 
-        }
-        
+        input, select, textarea { background: #000; border: 1px solid #D4AF37; color: #fff; padding: 10px; border-radius: 5px; font-family: 'Garamond', serif; font-size: 0.85rem; width: 31%; }
         textarea { width: 64%; height: 45px; resize: none; }
-        input:focus, textarea:focus { outline: none; border-color: #fff; box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
-        
         .btn-group { display: flex; gap: 12px; margin-top: 5px; }
-        
-        .btn-manifest { 
-            background: #D4AF37; color: #000; border: none; padding: 12px 40px; cursor: pointer; 
-            font-weight: bold; text-transform: uppercase; letter-spacing: 3px; border-radius: 5px; 
-            transition: 0.5s; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); 
-        }
-        
-        .btn-manifest:hover { background: #fff; box-shadow: 0 0 30px #D4AF37; transform: scale(1.02); }
-        
+        .btn-manifest { background: #D4AF37; color: #000; border: none; padding: 12px 40px; cursor: pointer; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; border-radius: 5px; transition: 0.5s; }
+        .btn-manifest:hover { background: #fff; box-shadow: 0 0 25px #D4AF37; }
         .btn-refresh { background: #000; color: #D4AF37; border: 1px solid #D4AF37; padding: 10px 30px; border-radius: 5px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; }
-
-        /* THE SOVEREIGN ARCHIVE */
         .vault-window { flex: 1.5; width: 100%; background: #fff; border-top: 2px solid #D4AF37; }
-        
         iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
-
 <canvas id="canvas"></canvas>
-
 <header><h1>SOVEREIGN EMPIRE</h1></header>
-
 <div class="main-container">
-    <!-- THE VISUAL ENGINE -->
-    <div class="flame-container">
-        <div class="flame-orb"></div>
-    </div>
-
-    <!-- THE PRODUCTION CONTROLS -->
+    <div class="flame-container"><div class="flame-orb"></div></div>
     <div class="control-bar">
         <div class="input-row">
             <input type="text" id="brand" placeholder="Empire Brand Name">
             <input type="email" id="email" placeholder="Recipient Email">
             <select id="assetType">
-                <option value="">-- CHOOSE YOUR ASSET --</option>
-                <option value="Long-form Sales Page">Manifest: Sales Page</option>
-                <option value="Landing Page">Manifest: Landing Page</option>
+                <option value="Sales Page">Manifest: Sales Page</option>
                 <option value="Full Ebook">Manifest: Full E-Book</option>
-                <option value="Adult Novel">Manifest: Professional Novel</option>
-                <option value="Children Storybook">Manifest: Illustrated Storybook</option>
-                <option value="Adult Coloring Book">Manifest: Coloring Book</option>
-                <option value="Luxe Recipe Book">Manifest: Recipe Book</option>
-                <option value="CEO Strategy Workbook">Manifest: CEO Workbook</option>
-                <option value="3-Part Email Sequence">Manifest: Email Sequence</option>
-                <option value="Daily Quote Set">Manifest: Daily Quotes</option>
-                <option value="Affirmation Set">Manifest: Affirmation Set</option>
-                <option value="Brand CTA Library">Manifest: CTA Library</option>
+                <option value="Storybook">Manifest: Storybook</option>
+                <option value="Workbook">Manifest: Workbook</option>
+                <option value="Emails">Manifest: Email Sequence</option>
             </select>
         </div>
         <div class="input-row">
-            <input type="text" id="dna" placeholder="Colors & Textures (Silk, Gold, etc.)">
-            <input type="text" id="font" placeholder="Font Style (Editorial/Modern)">
-            <textarea id="vision" placeholder="Paste specific vision / details for this build..."></textarea>
+            <input type="text" id="dna" placeholder="Colors & Textures">
+            <input type="text" id="font" placeholder="Font Style">
+            <textarea id="vision" placeholder="Paste specific vision details here..."></textarea>
         </div>
         <div class="btn-group">
             <button class="btn-manifest" id="mBtn" onclick="manifest()">MANIFEST ASSET & PDF 🥂</button>
-            <button class="btn-refresh" onclick="refreshVault()">REFRESH VAULT</button>
+            <button class="btn-refresh" onclick="document.getElementById('vframe').src += ''">REFRESH VAULT</button>
         </div>
     </div>
-
-    <!-- THE ARCHIVAL WINDOW -->
-    <div class="vault-window">
-        <iframe id="vframe" src="https://docs.google.com/document/d/1z6C9T_WUjWzA8R8tZapIhwK6XmAhKj1fFOJFGWq212E/preview"></iframe>
-    </div>
+    <div class="vault-window"><iframe id="vframe" src="https://docs.google.com/document/d/1z6C9T_WUjWzA8R8tZapIhwK6XmAhKj1fFOJFGWq212E/preview"></iframe></div>
 </div>
-
 <script>
     async function manifest() {
         const e = document.getElementById('email').value;
-        const b = document.getElementById('brand').value;
         const btn = document.getElementById('mBtn');
-        
         if(!e.includes('@')) return alert("Valid Email Required");
-        
-        btn.innerText = "COMMAND RECEIVED. VERA IS PAINTING...";
-        btn.style.opacity = "0.5";
-        
-        // YOUR UPDATED GOOGLE SCRIPT URL
-        const scriptURL = "https://script.google.com/macros/s/AKfycbyFit_-dILUOr3tp0on8JA3pa2olk21YOOkW5hlJGbrtI77qXWIsgyfAGVNq27MSr5Y/exec";
+        btn.innerText = "COMMAND RECEIVED...";
         
         const data = {
-            brand: b,
+            brand: document.getElementById('brand').value,
             email: e,
             asset: document.getElementById('assetType').value,
             dna: document.getElementById('dna').value + " | " + document.getElementById('font').value,
             vision: document.getElementById('vision').value
         };
 
-        fetch(scriptURL, {
-            method: "POST",
-            mode: "no-cors",
-            body: JSON.stringify(data)
-        });
+        // THE URL FROM YOUR GOOGLE SCRIPT
+        const url = "https://script.google.com/macros/s/AKfycbyFit_-dILUOr3tp0on8JA3pa2olk21YOOkW5hlJGbrtI77qXWIsgyfAGVNq27MSr5Y/exec";
+        
+        fetch(url, { method: "POST", mode: "no-cors", body: JSON.stringify(data) });
 
-        // VERA TAKES ABOUT 45 SECONDS TO PAINT
+        setTimeout(() => { 
+            btn.innerText = "MANIFESTATION COMPLETE 🥂"; 
+            btn.style.background = "#fff";
+            btn.style.color = "#000";
+            document.getElementById('vframe').src += ''; 
+        }, 15000);
+    }
+    const canvas=document.getElementById('canvas'),ctx=canvas.getContext('2d');canvas.width=window.innerWidth;canvas.height=window.innerHeight;let p=[];
+    class Part{constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.s=Math.random()*2;this.vx=Math.random()*0.4-0.2;this.vy=Math.random()*0.4-0.2}update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>canvas.width)this.vx*=-1;if(this.y<0||this.y>canvas.height)this.vy*=-1}draw(){ctx.fillStyle='rgba(212, 175, 55, 0.6)';ctx.beginPath();ctx.arc(this.x,this.y,this.s,0,Math.PI*2);ctx.fill()}}
+    function init(){for(let i=0;i<100;i++)p.push(new Part())}function anim(){ctx.clearRect(0,0,canvas.width,canvas.height);p.forEach(x=>{x.update();x.draw()});requestAnimationFrame(anim)}init();anim();
+</script>
+</body>
+</html>
