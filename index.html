@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sovereign Empire | Command Center</title>
+    <title>Sovereign Empire | Digital Atelier</title>
     <style>
         body, html { margin: 0; padding: 0; background: #000; color: #D4AF37; font-family: 'Garamond', serif; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
         #canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
@@ -11,7 +11,7 @@
         .main-container { display: flex; flex-direction: column; height: calc(100vh - 60px); }
         .flame-container { flex: 2.5; width: 100%; display: flex; align-items: center; justify-content: center; }
         .flame-orb { width: 180px; height: 180px; background: radial-gradient(circle, #fff 0%, #D4AF37 50%, transparent 70%); border-radius: 50%; box-shadow: 0 0 80px #D4AF37; animation: pulse 4s infinite alternate; }
-        @keyframes pulse { 0% { transform: scale(0.9); opacity: 0.7; } 100% { transform: scale(1.1); opacity: 1; } }
+        @keyframes pulse { 0% { transform: scale(0.95); opacity: 0.7; } 100% { transform: scale(1.05); opacity: 1; } }
         .control-bar { background: rgba(10,10,10,0.95); padding: 15px; border-top: 1px solid #D4AF37; display: flex; flex-direction: column; align-items: center; gap: 8px; }
         .input-row { display: flex; gap: 10px; width: 100%; justify-content: center; flex-wrap: wrap; }
         input, select, textarea { background: #000; border: 1px solid #D4AF37; color: #fff; padding: 10px; border-radius: 5px; font-family: 'Garamond', serif; font-size: 0.85rem; width: 31%; }
@@ -29,20 +29,24 @@
     <div class="flame-container"><div class="flame-orb"></div></div>
     <div class="control-bar">
         <div class="input-row">
-            <input type="text" id="brand" placeholder="Brand Name">
+            <input type="text" id="brand" placeholder="Empire Brand Name">
             <input type="email" id="email" placeholder="Recipient Email">
             <select id="asset">
+                <option value="">-- SELECT ASSET TYPE --</option>
                 <option value="Long-form Sales Page">Manifest: Sales Page</option>
-                <option value="Full Ebook">Manifest: Full E-Book</option>
-                <option value="Children Storybook">Manifest: Children Storybook</option>
-                <option value="Emails">Manifest: Email Sequence</option>
-                <option value="Recipe Book">Manifest: Recipe Book</option>
+                <option value="Landing Page">Manifest: Landing Page</option>
+                <option value="Offer Page">Manifest: Offer Page</option>
+                <option value="Standalone Editorial Image">Manifest: Image Only</option>
+                <option value="Full E-Book">Manifest: Full E-Book</option>
+                <option value="Storybook">Manifest: Storybook</option>
+                <option value="CEO Strategy Workbook">Manifest: Workbook</option>
+                <option value="Luxe Recipe Book">Manifest: Recipe Book</option>
             </select>
         </div>
         <div class="input-row">
-            <input type="text" id="dna" placeholder="Colors & Textures">
-            <input type="text" id="font" placeholder="Font Style">
-            <textarea id="vision" placeholder="Paste vision details here..."></textarea>
+            <input type="text" id="dna" placeholder="Colors & Textures (Silk, Gold, etc.)">
+            <input type="text" id="font" placeholder="Font Style (Editorial/Modern)">
+            <textarea id="vision" placeholder="Paste specific vision / details for this build..."></textarea>
         </div>
         <div style="display:flex; gap:10px;">
             <button class="btn-manifest" id="mBtn" onclick="manifest()">MANIFEST ASSET & PDF 🥂</button>
@@ -52,7 +56,6 @@
     <div class="vault-window"><iframe id="vframe" src="https://docs.google.com/document/d/1z6C9T_WUjWzA8R8tZapIhwK6XmAhKj1fFOJFGWq212E/preview"></iframe></div>
 </div>
 
-<!-- HIDDEN FORM FOR BYPASSING SECURITY BLOCKS -->
 <form id="hiddenForm" action="https://script.google.com/macros/s/AKfycbyFit_-dILUOr3tp0on8JA3pa2olk21YOOkW5hlJGbrtI77qXWIsgyfAGVNq27MSr5Y/exec" method="POST" target="hidden_iframe" style="display:none;">
     <input type="hidden" name="payload" id="formPayload">
 </form>
@@ -63,25 +66,11 @@
         const e = document.getElementById('email').value;
         const b = document.getElementById('mBtn');
         if(!e.includes('@')) return alert("Valid Email Required");
-        
-        b.innerText = "COMMAND RECEIVED. ARCHIVING...";
-        
-        const data = {
-            brand: document.getElementById('brand').value,
-            email: e,
-            asset: document.getElementById('asset').value,
-            dna: document.getElementById('dna').value + " | " + document.getElementById('font').value,
-            vision: document.getElementById('vision').value
-        };
-
-        // This sends the data through the hidden form (Unstoppable)
+        b.innerText = "COMMAND RECEIVED. VERA IS PAINTING...";
+        const data = { brand: document.getElementById('brand').value, email: e, asset: document.getElementById('asset').value, dna: document.getElementById('dna').value + " | " + document.getElementById('font').value, vision: document.getElementById('vision').value };
         document.getElementById('formPayload').value = JSON.stringify(data);
         document.getElementById('hiddenForm').submit();
-
-        setTimeout(() => { 
-            b.innerText = "MANIFESTATION COMPLETE 🥂"; 
-            document.getElementById('vframe').src += ''; 
-        }, 12000);
+        setTimeout(() => { b.innerText = "MANIFESTATION COMPLETE 🥂"; b.style.background = "#fff"; b.style.color = "#000"; document.getElementById('vframe').src += ''; }, 15000);
     }
     const canvas=document.getElementById('canvas'),ctx=canvas.getContext('2d');canvas.width=window.innerWidth;canvas.height=window.innerHeight;let p=[];
     class Part{constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.s=Math.random()*2;this.vx=Math.random()*0.4-0.2;this.vy=Math.random()*0.4-0.2}update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>canvas.width)this.vx*=-1;if(this.y<0||this.y>canvas.height)this.vy*=-1}draw(){ctx.fillStyle='rgba(212, 175, 55, 0.6)';ctx.beginPath();ctx.arc(this.x,this.y,this.s,0,Math.PI*2);ctx.fill()}}
