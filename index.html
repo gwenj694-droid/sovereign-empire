@@ -1,3 +1,28 @@
+<!-- THE IMPERIAL GATE START -->
+<div id="imperial-gate" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:99999; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; color:#D4AF37; font-family:serif;">
+    <h1 style="letter-spacing:10px; text-transform:uppercase;">Signature 7</h1>
+    <p style="color:#fff; letter-spacing:3px; font-size:0.7rem; margin-bottom:30px;">PROTECTED ARCHITECT NODE</p>
+    <input type="password" id="pass-input" style="background:none; border:none; border-bottom:2px solid #D4AF37; color:#fff; text-align:center; font-size:1.5rem; width:250px; outline:none; letter-spacing:5px;" placeholder="CODE">
+    <br><br>
+    <button onclick="checkImperialKey()" style="background:none; border:1px solid #D4AF37; color:#D4AF37; padding:10px 40px; cursor:pointer; text-transform:uppercase; letter-spacing:2px;">Unlock</button>
+</div>
+
+<script>
+    function checkImperialKey() {
+        var key = document.getElementById('pass-input').value.trim();
+        if (key.toUpperCase() === "IMPERIAL") {
+            document.getElementById('imperial-gate').style.display = 'none';
+        } else {
+            alert("UNAUTHORIZED ACCESS.");
+        }
+    }
+    // Allow pressing "Enter" to unlock
+    document.getElementById('pass-input')?.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') checkImperialKey();
+    });
+</script>
+<!-- THE IMPERIAL GATE END -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
